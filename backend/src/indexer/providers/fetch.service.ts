@@ -7,6 +7,7 @@ const _ = require('lodash');
 const configs = {
   BATCH_SIZE: 100,
   TAKE_COUNT: 5,
+  DELAY_TIME:10
 };
 @Injectable()
 export class FetchService {
@@ -17,7 +18,7 @@ export class FetchService {
 
   private Buffer: BlockedQueue<number>;
   constructor(private api: Connection) {
-    this.Buffer = new BlockedQueue<number>(100);
+    this.Buffer = new BlockedQueue<number>(configs.BATCH_SIZE);
   }
   async start(startBlock: number, handler: Function): Promise<any> {
     await this.init(startBlock);
@@ -37,9 +38,10 @@ export class FetchService {
         const blocksBuffer = _.range(start, end + 1, 1);
         this.Buffer.putAll(blocksBuffer);
         // update lastProcessingHeight.
-        this.lastProcessingHeight = end;
+        await this.syncLatestProccesedBlock(end);
       } else {
-        await delay(1);
+        // wait for takeBuffer.
+        await delay(configs.DELAY_TIME);
         continue;
       }
     }
@@ -47,22 +49,25 @@ export class FetchService {
   async takeBuffer(handler: Function) {
     while (!this.isStopped) {
       if (this.Buffer.size <= 0) {
-        await delay(5);
+        // wait for fillBuffer.
+        await delay(configs.TAKE_COUNT);
         continue;
       }
 
       const batch = await this.Buffer.takeAll(5);
       const blocks = await this.fetchBatchBlocks(batch);
+
+      // process blocks
       blocks.forEach(async (b) => {
         if (b.status) {
           await handler(b);
         } else {
-          console.log('block index error,height=', b.height);
+          console.error('block index error,height=', b.height);
         }
       });
     }
   }
-  async init(startBlock: number) {
+  async init(startBlock: number):Promise<void> {
     this.startBlock = startBlock;
     this.latestBlockHeight = await this.api.getLatestBlockHeight();
     this.lastProcessingHeight = this.startBlock - 1;
@@ -70,6 +75,10 @@ export class FetchService {
     setInterval(async () => {
       this.latestBlockHeight = await this.api.getLatestBlockHeight();
     }, 15 * 1000);
+  }
+  async syncLatestProccesedBlock(height:number):Promise<void>{
+    this.lastProcessingHeight=height;
+    // db update!
   }
   async fetchBatchBlocks(buffer: number[]): Promise<FetchResult[]> {
     return await Promise.all(buffer.map((b) => this.api.fetchBlockByHeight(b)));

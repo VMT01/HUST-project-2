@@ -19,7 +19,7 @@ export class Connection {
       if(!block.hash) throw new Error()
       return { block, status: true,height };
     } catch (error) {
-      console.log("fetch error: ",error.message);
+      console.error("fetch error: ",error.message);
       
       return { status: false, block: null,height };
     }
