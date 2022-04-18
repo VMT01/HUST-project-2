@@ -22,11 +22,16 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@types/lodash": "^4.14.181",
+    "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
+    "remove": "^0.1.5",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "web3": "^1.7.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
