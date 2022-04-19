@@ -1,0 +1,8 @@
+export enum EEnvKey {
+    NODE_ENV = 'NODE_ENV',
+    PORT = 'PORT',
+    GLOBAL_PREFIX = 'GLOBAL_PREFIX',
+    SWAGGER_PATH = 'SWAGGER_PATH',
+    PROVIDER = 'PROVIDER',
+    START_BLOCK = 'START_BLOCK',
+}
