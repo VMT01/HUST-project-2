@@ -7,6 +7,7 @@ import { ECrawlerConfig } from '@constants/crawler.constant';
 import { BlockedQueue } from '@shared/class-helper/BlockedQueue';
 import { Connection } from '@shared/modules/web3/providers/web3.service';
 import { delay } from '@shared/utils/promise';
+import { BlockHandler } from 'types/common-types';
 
 @Injectable()
 export class FetchService {
@@ -20,7 +21,7 @@ export class FetchService {
         this.Buffer = new BlockedQueue<number>(ECrawlerConfig.BATCH_SIZE);
     }
 
-    async start(startBlock: number, handler: () => void): Promise<any> {
+    async start(startBlock: number, handler: BlockHandler): Promise<any> {
         await this.init(startBlock);
         await Promise.all([this.fillBuffer(), this.takeBuffer(handler)]);
     }
@@ -45,7 +46,7 @@ export class FetchService {
         }
     }
 
-    async takeBuffer(handler: (arg: FetchResult) => void) {
+    async takeBuffer(handler: BlockHandler) {
         while (!this.isStopped) {
             if (this.Buffer.size <= 0) {
                 // wait for fillBuffer.
