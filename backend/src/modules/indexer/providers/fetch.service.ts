@@ -50,15 +50,15 @@ export class FetchService {
         while (!this.isStopped) {
             if (this.Buffer.size <= 0) {
                 // wait for fillBuffer.
-                await delay(ECrawlerConfig.TAKE_COUNT);
+                await delay(ECrawlerConfig.DELAY_TIME);
                 continue;
             }
 
-            const batch = await this.Buffer.takeAll(5);
-            const blocks = await this.fetchBatchBlocks(batch);
+            const batch = await this.Buffer.takeAll(ECrawlerConfig.TAKE_COUNT);
+            const response = await this.fetchBatchBlocks(batch);
 
             // process blocks
-            blocks.forEach(async result => {
+            response.forEach(async result => {
                 if (result.status) {
                     handler(result.block);
                 } else {
