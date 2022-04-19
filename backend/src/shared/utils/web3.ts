@@ -4,6 +4,8 @@ const Web3 = require('web3-eth');
 
 export const getWeb3ProviderLink = () => {
     const PROVIDER = process.env.PROVIDER;
+    console.log(PROVIDER);
+    
     return PROVIDER;
 };
 

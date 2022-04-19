@@ -28,5 +28,8 @@ export class IndexerManager {
         this.startBlock = Math.max(parseInt(envStartBlock), dbStartBlock);
     }
 
-    async indexBlock(block: BlockTransactionObject): Promise<void> {}
+    async indexBlock(block: BlockTransactionObject): Promise<void> {
+        console.log(block);
+        
+    }
 }
