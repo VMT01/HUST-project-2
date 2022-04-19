@@ -4,10 +4,10 @@ import { ConfigurationModule } from '@config/config.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { IndexerModule } from './modules/indexer/indexer.module';
+import { MODULES } from './modules';
 
 @Module({
-    imports: [ConfigurationModule, IndexerModule],
+    imports: [ConfigurationModule, ...MODULES],
     controllers: [AppController],
     providers: [AppService],
 })
