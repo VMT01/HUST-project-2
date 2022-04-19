@@ -58,11 +58,11 @@ export class FetchService {
             const blocks = await this.fetchBatchBlocks(batch);
 
             // process blocks
-            blocks.forEach(async block => {
-                if (block.status) {
-                    handler(block);
+            blocks.forEach(async result => {
+                if (result.status) {
+                    handler(result.block);
                 } else {
-                    console.error('block index error,height=', block.height);
+                    console.error('block index error,height=', result.height);
                 }
             });
         }
