@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-
 import { BlockTransactionObject } from 'web3-eth';
+
 import { EEnvKey } from '@constants/env.constant';
 
 import { FetchService } from './fetch.service';
@@ -30,6 +30,5 @@ export class IndexerManager {
 
     async indexBlock(block: BlockTransactionObject): Promise<void> {
         console.log(block);
-        
     }
 }
