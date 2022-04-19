@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as lodash from 'lodash';
+import { BlockHandler } from 'types/common-types';
 import { FetchResult } from 'types/web3-types';
 
 import { ECrawlerConfig } from '@constants/crawler.constant';
@@ -7,7 +8,6 @@ import { ECrawlerConfig } from '@constants/crawler.constant';
 import { BlockedQueue } from '@shared/class-helper/BlockedQueue';
 import { Connection } from '@shared/modules/web3/providers/web3.service';
 import { delay } from '@shared/utils/promise';
-import { BlockHandler } from 'types/common-types';
 
 @Injectable()
 export class FetchService {

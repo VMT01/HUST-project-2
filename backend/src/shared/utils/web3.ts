@@ -2,10 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 
 const Web3 = require('web3-eth');
 
-export const getWeb3ProviderLink = () => {
-    const PROVIDER = process.env.PROVIDER;
-    return PROVIDER;
-};
+export const getWeb3ProviderLink = () => process.env.PROVIDER;
 
 export const getWeb3 = () => {
     const provider = getWeb3ProviderLink();
