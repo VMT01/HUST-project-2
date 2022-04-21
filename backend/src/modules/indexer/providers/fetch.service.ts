@@ -21,7 +21,7 @@ export class FetchService {
         this.Buffer = new BlockedQueue<number>(ECrawlerConfig.BATCH_SIZE);
     }
 
-    async start(startBlock: number, handler: BlockHandler): Promise<any> {
+    async start(startBlock: number, handler: BlockHandler) {
         await this.init(startBlock);
         await Promise.all([this.fillBuffer(), this.takeBuffer(handler)]);
     }
@@ -62,7 +62,7 @@ export class FetchService {
                 if (result.status) {
                     handler(result.block);
                 } else {
-                    console.error('block index error,height=', result.height);
+                    console.error('Block index error, height = ', result.height);
                 }
             });
         }
