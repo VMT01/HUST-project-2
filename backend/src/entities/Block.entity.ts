@@ -1,52 +1,65 @@
-import { BaseEntityIncludeTime } from '@core/base-entity';
 import { Column, Entity } from 'typeorm';
 
-import { IBlockAttribute } from './attributes/BlockEntity.interface';
+import { BaseEntityIncludeTime } from '@core/base-entity';
+
+import { IBlockAttribute } from './attributes/Block.interface';
 
 @Entity('blocks')
 export class BlockEntity extends BaseEntityIncludeTime implements IBlockAttribute {
     @Column()
-    blockHash: string;
-    
+    number: number;
+
     @Column()
-    blockNumber: number;
-    
-    @Column()
-    difficulty: string;
-    
-    @Column()
-    gasLimit: number;
-    
-    @Column()
-    gasUsed: number;
-    
-    @Column()
-    logsBloom: string;
-    
-    @Column()
-    miner: string;
-    
-    @Column()
-    nonce: string;
-    
+    hash: string;
+
     @Column()
     parentHash: string;
-    
+
     @Column()
-    receiptsRoot: string;
-    
+    nonce: string;
+
     @Column()
     sha3Uncles: string;
-    
+
     @Column()
-    size: number;
-    
+    logsBloom: string;
+
+    @Column({ nullable: true })
+    transactionRoot?: string;
+
     @Column()
     stateRoot: string;
-    
+
+    @Column()
+    receiptsRoot: string;
+
+    @Column()
+    miner: string;
+
+    @Column()
+    extraData: string;
+
+    @Column()
+    gasLimit: number;
+
+    @Column()
+    gasUsed: number;
+
     @Column()
     timestamp: string;
-    
+
+    @Column({ nullable: true })
+    baseFeePerGas?: number;
+
     @Column()
-    totalDifficulty: string;
+    size: number;
+
+    @Column()
+    difficulty: number;
+
+    @Column()
+    totalDifficulty: number;
+
+    @Column('character varying', { array: true })
+    uncles: string[];
 }

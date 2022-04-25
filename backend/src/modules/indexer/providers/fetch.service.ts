@@ -9,6 +9,8 @@ import { BlockedQueue } from '@shared/class-helper/BlockedQueue';
 import { Connection } from '@shared/modules/web3/providers/web3.service';
 import { delay } from '@shared/utils/promise';
 
+import { CrawlStatusRepository } from './crawl-status.repository';
+
 @Injectable()
 export class FetchService {
     private isStopped = false;
@@ -17,7 +19,7 @@ export class FetchService {
     private startBlock = 1;
     private Buffer: BlockedQueue<number>;
 
-    constructor(private api: Connection) {
+    constructor(private api: Connection, private readonly crawlStatusRepo: CrawlStatusRepository) {
         this.Buffer = new BlockedQueue<number>(ECrawlerConfig.BATCH_SIZE);
     }
 
@@ -81,6 +83,9 @@ export class FetchService {
     async syncLatestProcessedBlock(height: number): Promise<void> {
         this.lastProcessingHeight = height;
         // db update!
+        const blockStatus = await this.crawlStatusRepo.findOne({ type: 'block' });
+        blockStatus.index = height;
+        await this.crawlStatusRepo.save(blockStatus);
     }
 
     async fetchBatchBlocks(buffer: number[]): Promise<FetchResult[]> {
