@@ -1,14 +1,16 @@
 import { Column, Entity } from 'typeorm';
 
+import { ETableName } from '@constants/entity.constant';
+
 import { BaseEntityIncludeTime } from '@core/base-entity';
 
 import { ICrawlStatusAttribute } from './attributes/CrawlStatus.interface';
 
-@Entity('crawl_status')
+@Entity(ETableName.CRAWL_STATUS)
 export class CrawlStatusEntity extends BaseEntityIncludeTime implements ICrawlStatusAttribute {
-    @Column()
+    @Column({ name: 'index', type: 'integer' })
     index: number;
 
-    @Column()
+    @Column({ name: 'type', type: 'character varying' })
     type: string;
 }

@@ -1,15 +1,15 @@
+import { ETableName } from '@constants/entity.constant';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class createCrawlStatusTable1650507235156 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'crawl_status',
+                name: ETableName.CRAWL_STATUS,
                 columns: [
                     {
                         name: 'id',
-                        type: 'varchar',
-                        length: '50',
+                        type: 'character varying',
                         isPrimary: true,
                     },
                     {
@@ -36,6 +36,6 @@ export class createCrawlStatusTable1650507235156 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('crawl_status');
+        await queryRunner.dropTable(ETableName.CRAWL_STATUS);
     }
 }
