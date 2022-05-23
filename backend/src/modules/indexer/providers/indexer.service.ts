@@ -51,7 +51,7 @@ export class IndexerManager {
             nonce: block.nonce,
             sha3Uncles: block.sha3Uncles,
             logsBloom: block.logsBloom,
-            transactionRoot: block.transactionRoot && block.transactionRoot,
+            transactionRoot: block.transactionRoot,
             stateRoot: block.stateRoot,
             receiptsRoot: block.receiptsRoot,
             miner: block.miner,
@@ -79,7 +79,7 @@ export class IndexerManager {
                 value: transaction.value,
                 gasPrice: transaction.gasPrice,
                 maxPriorityFeePerGas: transaction.maxPriorityFeePerGas && +transaction.maxPriorityFeePerGas,
-                maxFeePerGas: +transaction.maxFeePerGas && +transaction.maxFeePerGas,
+                maxFeePerGas: transaction.maxFeePerGas && +transaction.maxFeePerGas,
                 gas: transaction.gas,
                 input: transaction.input,
             });

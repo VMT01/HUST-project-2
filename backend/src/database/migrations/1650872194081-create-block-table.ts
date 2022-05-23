@@ -1,10 +1,11 @@
+import { ETableName } from '@constants/entity.constant';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class createBlockTable1650872194081 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'blocks',
+                name: ETableName.BLOCKS,
                 columns: [
                     {
                         name: 'id',
@@ -107,6 +108,6 @@ export class createBlockTable1650872194081 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('blocks');
+        await queryRunner.dropTable(ETableName.BLOCKS);
     }
 }

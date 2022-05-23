@@ -1,10 +1,12 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
+import { ETableName } from '@constants/entity.constant';
+
 export class createTransactionTable1650881300826 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'transactions',
+                name: ETableName.TRANSACTIONS,
                 columns: [
                     {
                         name: 'id',
@@ -60,6 +62,7 @@ export class createTransactionTable1650881300826 implements MigrationInterface {
                     {
                         name: 'max_fee_per_gas',
                         type: 'integer',
+                        isNullable: true,
                     },
                     {
                         name: 'gas',
@@ -85,6 +88,6 @@ export class createTransactionTable1650881300826 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('transactions');
+        await queryRunner.dropTable(ETableName.TRANSACTIONS);
     }
 }
