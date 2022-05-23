@@ -54,12 +54,12 @@ export class createTransactionTable1650881300826 implements MigrationInterface {
                     },
                     {
                         name: 'max_priority_fee_per_gas',
-                        type: 'character varying',
+                        type: 'integer',
                         isNullable: true,
                     },
                     {
                         name: 'max_fee_per_gas',
-                        type: 'character varying',
+                        type: 'integer',
                     },
                     {
                         name: 'gas',

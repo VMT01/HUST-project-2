@@ -6,60 +6,60 @@ import { IBlockAttribute } from './attributes/Block.interface';
 
 @Entity('blocks')
 export class BlockEntity extends BaseEntityIncludeTime implements IBlockAttribute {
-    @Column()
+    @Column({ name: 'number', type: 'integer' })
     number: number;
 
-    @Column()
+    @Column({ name: 'number', type: 'character varying' })
     hash: string;
 
-    @Column()
+    @Column({ name: 'parent_hash', type: 'character varying' })
     parentHash: string;
 
-    @Column()
+    @Column({ name: 'nonce', type: 'character varying' })
     nonce: string;
 
-    @Column()
+    @Column({ name: 'sha3_uncles', type: 'character varying' })
     sha3Uncles: string;
 
-    @Column()
+    @Column({ name: 'logs_bloom', type: 'character varying' })
     logsBloom: string;
 
-    @Column({ nullable: true })
+    @Column({ name: 'transaction_root', type: 'character varying', nullable: true })
     transactionRoot?: string;
 
-    @Column()
+    @Column({ name: 'state_root', type: 'character varying' })
     stateRoot: string;
 
-    @Column()
+    @Column({ name: 'receipts_root', type: 'character varying' })
     receiptsRoot: string;
 
-    @Column()
+    @Column({ name: 'miner', type: 'character varying' })
     miner: string;
 
-    @Column()
+    @Column({ name: 'extra_data', type: 'character varying' })
     extraData: string;
 
-    @Column()
+    @Column({ name: 'gas_limit', type: 'integer' })
     gasLimit: number;
 
-    @Column()
+    @Column({ name: 'gas_used', type: 'integer' })
     gasUsed: number;
 
-    @Column()
+    @Column({ name: 'timestamp', type: 'character varying' })
     timestamp: string;
 
-    @Column({ nullable: true })
+    @Column({ name: 'base_fee_per_gas', type: 'integer', nullable: true })
     baseFeePerGas?: number;
 
-    @Column()
+    @Column({ name: 'size', type: 'integer' })
     size: number;
 
-    @Column()
+    @Column({ name: 'difficulty', type: 'integer' })
     difficulty: number;
 
-    @Column()
+    @Column({ name: 'total_difficulty', type: 'integer' })
     totalDifficulty: number;
 
-    @Column('character varying', { array: true })
+    @Column({ name: 'uncles', type: 'character varying', array: true })
     uncles: string[];
 }

@@ -4,9 +4,9 @@ export class BaseEntityIncludeTime {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ name: 'created_at', type: 'timestamp without time zone' })
     createdAt: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ name: 'updated_at', type: 'timestamp without time zone' })
     updatedAt: Date;
 }

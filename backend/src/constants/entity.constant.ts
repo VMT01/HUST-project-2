@@ -3,3 +3,9 @@ export enum ETableName {
     BLOCKS = 'blocks',
     TRANSACTIONS = 'transactions',
 }
+
+export enum EAddressType {
+    UNDEFINED = 1,
+    CONTRACT,
+    WALLET,
+}
