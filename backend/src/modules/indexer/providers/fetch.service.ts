@@ -9,9 +9,7 @@ import { BlockedQueue } from '@shared/class-helper/BlockedQueue';
 import { Connection } from '@shared/modules/web3/providers/web3.service';
 import { delay } from '@shared/utils/promise';
 
-import { CrawlStatusRepository } from './crawl-status.repository';
 import { Interval } from '@nestjs/schedule';
-import { BlockRepository } from '@modules/blocks/providers/block.repository';
 
 @Injectable()
 export class FetchService {
@@ -21,8 +19,7 @@ export class FetchService {
     private startBlock = 1;
     private Buffer: BlockedQueue<number>;
 
-    constructor(private api: Connection, private readonly crawlStatusRepo: CrawlStatusRepository,
-        private readonly blockRepo: BlockRepository) {
+    constructor(private api: Connection) {
         this.Buffer = new BlockedQueue<number>(ECrawlerConfig.BATCH_SIZE);
     }
 
@@ -84,10 +81,10 @@ export class FetchService {
     }
     @Interval(15 * 1000)
     async syncLatestBlockWithDB(){
-        const blockStatus = await this.crawlStatusRepo.findOne({ type: 'block' });
-        const currentBlock = await this.blockRepo.createQueryBuilder().orderBy('number','DESC').getOne();
-        blockStatus.index = currentBlock?.number ?? 1;
-       return await this.crawlStatusRepo.save(blockStatus);
+    //     const blockStatus = await this.crawlStatusRepo.findOne({ type: 'block' });
+    //     const currentBlock = await this.blockRepo.createQueryBuilder().orderBy('number','DESC').getOne();
+    //     blockStatus.index = currentBlock?.number ?? 1;
+    //    return await this.crawlStatusRepo.save(blockStatus);
     }
     @Interval(15 * 1000)
     async synclatestBlockEthereum(){
