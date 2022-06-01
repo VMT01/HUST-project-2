@@ -81,7 +81,7 @@ class TransactionService {
             });
             transactions.push(newTransaction);
         });
-        this.transactionRepo.save(transactions);
+        await this.transactionRepo.save(transactions);
     }
 }
 
