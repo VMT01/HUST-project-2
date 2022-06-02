@@ -4,7 +4,7 @@ import {Transaction} from 'web3-core/types'
 
 
 
-import { TransactionRepository } from '@modules/transactions/providers/Transaction.repository';
+import { TxnRepository } from '@modules/transactions/providers/Transaction.repository';
 import { TransactionEntity } from '@entities/Transaction.entity';
 
 interface TransactionQueryParams {
@@ -18,7 +18,7 @@ interface TransactionQueryParams {
 const DEFAULT_LIMIT = 5;
 @Injectable()
 class TransactionService {
-    constructor(private readonly transactionRepo: TransactionRepository) {}
+    constructor(private readonly transactionRepo: TxnRepository) {}
 
     _buildQuery(params: TransactionQueryParams) {
         let builder = this.transactionRepo.createQueryBuilder();

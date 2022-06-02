@@ -9,7 +9,7 @@ export class BlockEntity extends BaseEntityIncludeTime implements IBlockAttribut
     @Column({ name: 'number', type: 'integer' })
     number: number;
 
-    @Column({ name: 'number', type: 'character varying' })
+    @Column({ name: 'hash', type: 'character varying' })
     hash: string;
 
     @Column({ name: 'parent_hash', type: 'character varying' })
