@@ -5,10 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import BlockService from './providers/block.service';
 import TransactionService from './providers/transaction.service';
-import { TransactionRepository } from '@modules/transactions/providers/Transaction.repository';
+import { TxnRepository } from '@modules/transactions/providers/Transaction.repository';
 
 @Module({
-    imports:[TypeOrmModule.forFeature([BlockRepository,TransactionRepository])],
+    imports:[TypeOrmModule.forFeature([BlockRepository,TxnRepository])],
     providers: [BlockService,TransactionService],
     exports: [BlockService,TransactionService],
 })
