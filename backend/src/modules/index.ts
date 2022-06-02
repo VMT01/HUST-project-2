@@ -1,4 +1,4 @@
-import { BlockModule } from './blocks/block.module';
+import { BlockModule } from './blocks/Block.module';
 import { IndexerModule } from './indexer/indexer.module';
 import { TransactionModule } from './transactions/Transaction.module';
 
