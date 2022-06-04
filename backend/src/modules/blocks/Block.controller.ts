@@ -15,9 +15,9 @@ export class BlockController {
         return this.blockService.getBlocks(query);
     }
 
-    @Get(':hash')
+    @Get(':identifier')
     @ApiOkResponse({ type: BlockResponseDto })
-    getBlockByHash(@Param('hash') hash: string) {
-        return this.blockService.getBlockByHashOrNumber(hash);
+    getBlockByHash(@Param('identifier') identifier: string) {
+        return this.blockService.getBlockByHashOrNumber(identifier);
     }
 }

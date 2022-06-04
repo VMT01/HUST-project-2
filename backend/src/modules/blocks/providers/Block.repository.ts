@@ -6,19 +6,12 @@ import { BaseRepository } from '@core/base-repository';
 
 import { BlockEntity } from '@entities/Block.entity';
 
-//import { BlocksRequestDto } from './dtos/block-request.dto';
-import { IPagination } from '@shared/interfaces/pagination.interface';
-
-export interface BlockQueryParams extends IPagination {
-    id?: number;
-    hash?: string;
-    number?: number;
-}
+import { BlocksRequestDto } from './dtos/block-request.dto';
 
 @EntityRepository(BlockEntity)
 export class BlockRepository extends BaseRepository<BlockEntity> {
     protected alias: ETableName = ETableName.BLOCKS;
-    buildQueryBuilder(params: BlockQueryParams) {
+    buildQueryBuilder(params: BlocksRequestDto) {
         const { id, hash, number } = params;
         const qb = this.createQb();
         qb.select([
@@ -49,14 +42,14 @@ export class BlockRepository extends BaseRepository<BlockEntity> {
 
         return qb;
     }
-    async getMany(options: BlockQueryParams) {
+    async getMany(options: BlocksRequestDto) {
         const qb = this.buildQueryBuilder(options);
 
         this.queryBuilderAddPagination(qb, options);
         return await qb.getManyAndCount();
     }
 
-    async getOne(options: BlockQueryParams) {
+    async getOne(options: BlocksRequestDto) {
         const qb = this.buildQueryBuilder(options);
         return await qb.getOne();
     }
