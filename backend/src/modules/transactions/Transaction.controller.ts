@@ -11,13 +11,13 @@ export class TxnController {
     constructor(private readonly txnService: TxnService) {}
 
     @Get()
-    getTxns(@Query() query: TxnsRequestDto) {
-        return this.txnService.getTxns(query);
+    getManyTxnsRoute(@Query() query: TxnsRequestDto) {
+        return this.txnService.getManyTxns(query);
     }
 
-    @Get(':hash')
+    @Get(':identifier')
     @ApiOkResponse({ type: TxnResponseDto })
-    getBlockByHash(@Param('hash') hash: string) {
-        return this.txnService.getTxnByHash(hash);
+    getOneTxnRoute(@Param('identifier') identifier: string) {
+        return this.txnService.getOneTxnByIdentifier(identifier);
     }
 }

@@ -5,8 +5,7 @@ import { initSwagger } from 'swagger';
 
 import { EEnvKey } from '@constants/env.constant';
 
-import { IndexerManager } from '@modules/indexer/providers/indexer.service';
-
+//import { IndexerManager } from '@modules/indexer/providers/indexer.service';
 import { AppModule } from './app.module';
 
 async function bootstrap() {

@@ -9,14 +9,17 @@ import { TxnRepository } from './Transaction.repository';
 export class TxnService {
     constructor(private readonly txnRepo: TxnRepository) {}
 
-    async getTxns(options: TxnsRequestDto) {
-        const data = await this.txnRepo.getTxns(options);
+    async getManyTxns(options: TxnsRequestDto) {
+        const data = await this.txnRepo.getMany(options);
 
         return BasePaginationResponseDto.convertToPaginationResponse(data, options.page || 1);
     }
 
-    async getTxnByHash(hash: string) {
-        const txn = await this.txnRepo.getTxnByHash(hash);
+    async getOneTxnByIdentifier(identifier: string) {
+        const options: TxnsRequestDto = {};
+        // find by hash, uuid
+        options.hash = identifier;
+        const txn = await this.txnRepo.getOne(options);
         if (!txn) throw new NotFoundException('Transaction not found');
 
         return txn;

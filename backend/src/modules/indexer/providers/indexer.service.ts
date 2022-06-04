@@ -4,8 +4,7 @@ import { BlockTransactionObject } from 'web3-eth';
 
 import { EEnvKey } from '@constants/env.constant';
 
-import { TransactionEntity } from '@entities/Transaction.entity';
-
+//import { TransactionEntity } from '@entities/Transaction.entity';
 import BlockService from '@shared/modules/services/providers/block.service';
 import TransactionService from '@shared/modules/services/providers/transaction.service';
 
