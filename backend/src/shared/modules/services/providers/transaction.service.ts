@@ -1,18 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { Transaction } from 'web3-core/types';
 
-import {Transaction} from 'web3-core/types'
-
-
+import { TransactionEntity } from '@entities/Transaction.entity';
 
 import { TxnRepository } from '@modules/transactions/providers/Transaction.repository';
-import { TransactionEntity } from '@entities/Transaction.entity';
 
 interface TransactionQueryParams {
     page?: number;
     limit?: number;
     id?: number;
     hash?: string;
-    isLatest?: Boolean;
+    isLatest?: boolean;
     number?: number;
 }
 const DEFAULT_LIMIT = 5;
@@ -39,13 +37,13 @@ class TransactionService {
             builder = builder.limit(limit);
         }
         if (page) {
-            let _limit = limit ?? DEFAULT_LIMIT;
+            const _limit = limit ?? DEFAULT_LIMIT;
             builder = builder.offset(_limit * (page - 1));
         }
         return builder;
     }
     async getOne(params: TransactionQueryParams) {
-        let builder = this._buildQuery(params);
+        const builder = this._buildQuery(params);
 
         return await builder.getOne();
     }
@@ -53,7 +51,7 @@ class TransactionService {
         const page = Math.max(1, params.page) ?? 1;
         const limit = Math.max(1, params.limit) ?? DEFAULT_LIMIT;
 
-        let builder = await this._buildQuery(params);
+        const builder = await this._buildQuery(params);
         const [result, total] = await builder.getManyAndCount();
         return {
             ...paginate(limit, page, total),

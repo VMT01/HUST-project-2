@@ -1,4 +1,4 @@
 export interface IGraphAttribute {
     tokenId: string;
-    time 
+    time;
 }

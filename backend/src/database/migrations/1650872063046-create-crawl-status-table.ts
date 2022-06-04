@@ -1,5 +1,6 @@
-import { ETableName } from '@constants/entity.constant';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+
+import { ETableName } from '@constants/entity.constant';
 
 export class createCrawlStatusTable1650507235156 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
