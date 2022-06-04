@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Interval } from '@nestjs/schedule';
 import * as lodash from 'lodash';
 import { BlockHandler } from 'types/common-types';
 import { FetchResult } from 'types/web3-types';
@@ -8,8 +9,6 @@ import { ECrawlerConfig } from '@constants/crawler.constant';
 import { BlockedQueue } from '@shared/class-helper/BlockedQueue';
 import { Connection } from '@shared/modules/web3/providers/web3.service';
 import { delay } from '@shared/utils/promise';
-
-import { Interval } from '@nestjs/schedule';
 
 @Injectable()
 export class FetchService {
@@ -77,18 +76,18 @@ export class FetchService {
     }
 
     async syncLatestProcessedBlock(height: number): Promise<void> {
-        this.lastProcessingHeight = height;     
+        this.lastProcessingHeight = height;
     }
     @Interval(15 * 1000)
-    async syncLatestBlockWithDB(){
-    //     const blockStatus = await this.crawlStatusRepo.findOne({ type: 'block' });
-    //     const currentBlock = await this.blockRepo.createQueryBuilder().orderBy('number','DESC').getOne();
-    //     blockStatus.index = currentBlock?.number ?? 1;
-    //    return await this.crawlStatusRepo.save(blockStatus);
+    async syncLatestBlockWithDB() {
+        //     const blockStatus = await this.crawlStatusRepo.findOne({ type: 'block' });
+        //     const currentBlock = await this.blockRepo.createQueryBuilder().orderBy('number','DESC').getOne();
+        //     blockStatus.index = currentBlock?.number ?? 1;
+        //    return await this.crawlStatusRepo.save(blockStatus);
     }
     @Interval(15 * 1000)
-    async synclatestBlockEthereum(){
-       return this.latestBlockHeight = await this.api.getLatestBlockHeight();
+    async synclatestBlockEthereum() {
+        return (this.latestBlockHeight = await this.api.getLatestBlockHeight());
     }
     async fetchBatchBlocks(buffer: number[]): Promise<FetchResult[]> {
         return await Promise.all(buffer.map(b => this.api.fetchBlockByHeight(b)));

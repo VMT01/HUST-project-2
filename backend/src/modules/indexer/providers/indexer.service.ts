@@ -36,8 +36,8 @@ export class IndexerManager {
         // restore start block from db or .env
         const envStartBlock = this.configService.get<number>(EEnvKey.START_BLOCK);
         // db
-        const { number: dbStartBlock = 1 } = await this.blockService.getOne({ isLatest: true });
-
+        const response = await this.blockService.getOne({ isLatest: true });
+        const dbStartBlock = response?.number ?? 1;
         this.startBlock = Math.max(envStartBlock, dbStartBlock);
     }
 

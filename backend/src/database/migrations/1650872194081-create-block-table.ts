@@ -1,5 +1,6 @@
-import { ETableName } from '@constants/entity.constant';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+
+import { ETableName } from '@constants/entity.constant';
 
 export class createBlockTable1650872194081 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {

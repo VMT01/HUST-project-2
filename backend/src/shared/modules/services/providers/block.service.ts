@@ -8,7 +8,7 @@ interface BlockQueryParams {
     limit?: number;
     id?: number;
     hash?: string;
-    isLatest?: Boolean;
+    isLatest?: boolean;
     number?: number;
 }
 const DEFAULT_LIMIT = 5;
@@ -35,13 +35,13 @@ class BlockService {
             builder = builder.limit(limit);
         }
         if (page) {
-            let _limit = limit ?? DEFAULT_LIMIT;
+            const _limit = limit ?? DEFAULT_LIMIT;
             builder = builder.offset(_limit * (page - 1));
         }
         return builder;
     }
     async getOne(params: BlockQueryParams) {
-        let builder = this._buildQuery(params);
+        const builder = this._buildQuery(params);
 
         return await builder.getOne();
     }
@@ -49,7 +49,7 @@ class BlockService {
         const page = Math.max(1, params.page) ?? 1;
         const limit = Math.max(1, params.limit) ?? DEFAULT_LIMIT;
 
-        let builder = await this._buildQuery(params);
+        const builder = await this._buildQuery(params);
         const [result, total] = await builder.getManyAndCount();
         return {
             ...paginate(limit, page, total),

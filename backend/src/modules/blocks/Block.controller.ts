@@ -18,6 +18,6 @@ export class BlockController {
     @Get(':hash')
     @ApiOkResponse({ type: BlockResponseDto })
     getBlockByHash(@Param('hash') hash: string) {
-        return this.blockService.getBlockByHash(hash);
+        return this.blockService.getBlockByHashOrNumber(hash);
     }
 }
