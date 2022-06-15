@@ -16,7 +16,7 @@ export class createBlockTable1650872194081 implements MigrationInterface {
                     },
                     {
                         name: 'number',
-                        type: 'integer',
+                        type: 'decimal',
                     },
                     {
                         name: 'hash',
@@ -61,11 +61,11 @@ export class createBlockTable1650872194081 implements MigrationInterface {
                     },
                     {
                         name: 'gas_limit',
-                        type: 'integer',
+                        type: 'decimal',
                     },
                     {
                         name: 'gas_used',
-                        type: 'integer',
+                        type: 'decimal',
                     },
                     {
                         name: 'timestamp',
@@ -73,20 +73,20 @@ export class createBlockTable1650872194081 implements MigrationInterface {
                     },
                     {
                         name: 'base_fee_per_gas',
-                        type: 'integer',
+                        type: 'decimal',
                         isNullable: true,
                     },
                     {
                         name: 'size',
-                        type: 'integer',
+                        type: 'decimal',
                     },
                     {
                         name: 'difficulty',
-                        type: 'integer',
+                        type: 'decimal',
                     },
                     {
                         name: 'total_difficulty',
-                        type: 'integer',
+                        type: 'decimal',
                     },
                     {
                         name: 'uncles',

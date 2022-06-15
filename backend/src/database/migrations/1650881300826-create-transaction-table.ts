@@ -20,7 +20,7 @@ export class createTransactionTable1650881300826 implements MigrationInterface {
                     },
                     {
                         name: 'nonce',
-                        type: 'integer',
+                        type: 'decimal',
                     },
                     {
                         name: 'block_hash',
@@ -29,12 +29,13 @@ export class createTransactionTable1650881300826 implements MigrationInterface {
                     },
                     {
                         name: 'block_number',
-                        type: 'integer',
+                        type: 'decimal',
+                
                         isNullable: true,
                     },
                     {
                         name: 'transaction_index',
-                        type: 'integer',
+                        type: 'decimal',
                         isNullable: true,
                     },
                     {
@@ -56,17 +57,17 @@ export class createTransactionTable1650881300826 implements MigrationInterface {
                     },
                     {
                         name: 'max_priority_fee_per_gas',
-                        type: 'integer',
+                        type: 'decimal',
                         isNullable: true,
                     },
                     {
                         name: 'max_fee_per_gas',
-                        type: 'integer',
+                        type: 'decimal',
                         isNullable: true,
                     },
                     {
                         name: 'gas',
-                        type: 'integer',
+                        type: 'decimal',
                     },
                     {
                         name: 'input',

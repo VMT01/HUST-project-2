@@ -15,9 +15,16 @@ services:
       - POSTGRES_DB=app
     networks:
       - project2_network
-
+  redis:
+    container_name: 'redis'
+    image: 'redis:3.2.0'
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redisdata:/data'
 networks:
   project2_network:
     driver: bridge
 volumes:
   dbdata:
+  redisdata:

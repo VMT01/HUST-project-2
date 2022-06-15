@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { BlockTransactionObject } from 'web3-eth';
-
+import { Queue } from 'bull';
+import { InjectQueue } from '@nestjs/bull';
 import { EEnvKey } from '@constants/env.constant';
 
 //import { TransactionEntity } from '@entities/Transaction.entity';
@@ -19,7 +20,8 @@ export class IndexerManager {
         private readonly configService: ConfigService,
         private readonly blockService: BlockService,
         private readonly transactionService: TransactionService,
-    ) {}
+        @InjectQueue('address') private addressQueue: Queue
+    ) { }
 
     async start(): Promise<void> {
         // prepare indexer
@@ -33,14 +35,25 @@ export class IndexerManager {
         console.info('prepare indexer!');
 
         // restore start block from db or .env
-        const envStartBlock = this.configService.get<number>(EEnvKey.START_BLOCK);
+        const envStartBlock =10855080
+        // this.configService.get<number>(EEnvKey.START_BLOCK);
+       
+        
         // db
         const response = await this.blockService.getOne({ isLatest: true });
         const dbStartBlock = response?.number ?? 1;
         this.startBlock = Math.max(envStartBlock, dbStartBlock);
+        console.log(this.startBlock);
+        
     }
 
     async indexBlock(block: BlockTransactionObject) {
         await Promise.all([this.blockService.createOne(block), this.transactionService.createMany(block.transactions)]);
+        // TODO: add address to cron job to get data such as contract, wallet
+        const jobs=[...block.transactions.map(d => ({ data: d.from })), ...block.transactions.map(d => ({ data: d.to }))]
+      // console.log(jobs,'added jobs');
+       
+        await this.addressQueue.addBulk(jobs)
+       
     }
 }
