@@ -26,4 +26,8 @@ export class Connection {
     async getLatestBlockHeight(): Promise<number> {
         return await this.web3.getBlockNumber();
     }
+    async isSmartContract(address: string) {
+        const data = await this.web3.getCode(address)
+        return data !== '0x'
+    }
 }

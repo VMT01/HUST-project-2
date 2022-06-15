@@ -9,16 +9,16 @@ export class TransactionEntity extends BaseEntityIncludeTime implements ITransac
     @Column({ name: 'hash', type: 'character varying' })
     hash: string;
 
-    @Column({ name: 'nonce', type: 'integer' })
+    @Column({ name: 'nonce', type: 'decimal' })
     nonce: number;
 
     @Column({ name: 'block_hash', type: 'character varying', nullable: true })
     blockHash?: string;
 
-    @Column({ name: 'block_number', type: 'integer', nullable: true })
+    @Column({ name: 'block_number', type: 'decimal', nullable: true })
     blockNumber?: number;
 
-    @Column({ name: 'transaction_index', type: 'integer', nullable: true })
+    @Column({ name: 'transaction_index', type: 'decimal', nullable: true })
     transactionIndex?: number;
 
     @Column({ name: 'from', type: 'character varying' })
@@ -33,13 +33,13 @@ export class TransactionEntity extends BaseEntityIncludeTime implements ITransac
     @Column({ name: 'gas_price', type: 'character varying' })
     gasPrice: string;
 
-    @Column({ name: 'max_priority_fee_per_gas', type: 'integer', nullable: true })
+    @Column({ name: 'max_priority_fee_per_gas', type: 'decimal', nullable: true })
     maxPriorityFeePerGas?: number;
 
-    @Column({ name: 'max_fee_per_gas', type: 'integer', nullable: true })
+    @Column({ name: 'max_fee_per_gas', type: 'decimal', nullable: true })
     maxFeePerGas?: number;
 
-    @Column({ name: 'gas', type: 'integer' })
+    @Column({ name: 'gas', type: 'decimal' })
     gas: number;
 
     @Column({ name: 'input', type: 'character varying' })

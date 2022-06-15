@@ -6,7 +6,7 @@ import { IBlockAttribute } from './attributes/Block.interface';
 
 @Entity('blocks')
 export class BlockEntity extends BaseEntityIncludeTime implements IBlockAttribute {
-    @Column({ name: 'number', type: 'integer' })
+    @Column({ name: 'number', type: 'decimal' })
     number: number;
 
     @Column({ name: 'hash', type: 'character varying' })
@@ -39,22 +39,22 @@ export class BlockEntity extends BaseEntityIncludeTime implements IBlockAttribut
     @Column({ name: 'extra_data', type: 'character varying' })
     extraData: string;
 
-    @Column({ name: 'gas_limit', type: 'integer' })
+    @Column({ name: 'gas_limit', type: 'decimal' })
     gasLimit: number;
 
-    @Column({ name: 'gas_used', type: 'integer' })
+    @Column({ name: 'gas_used', type: 'decimal' })
     gasUsed: number;
 
     @Column({ name: 'timestamp', type: 'character varying' })
     timestamp: string;
 
-    @Column({ name: 'base_fee_per_gas', type: 'integer', nullable: true })
+    @Column({ name: 'base_fee_per_gas', type: 'decimal', nullable: true })
     baseFeePerGas?: number;
 
-    @Column({ name: 'size', type: 'integer' })
+    @Column({ name: 'size', type: 'decimal' })
     size: number;
 
-    @Column({ name: 'difficulty', type: 'integer' })
+    @Column({ name: 'difficulty', type: 'decimal' })
     difficulty: number;
 
     @Column({ name: 'total_difficulty', type: 'integer' })

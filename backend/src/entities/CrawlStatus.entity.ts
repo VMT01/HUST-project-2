@@ -8,7 +8,7 @@ import { ICrawlStatusAttribute } from './attributes/CrawlStatus.interface';
 
 @Entity(ETableName.CRAWL_STATUS)
 export class CrawlStatusEntity extends BaseEntityIncludeTime implements ICrawlStatusAttribute {
-    @Column({ name: 'index', type: 'integer' })
+    @Column({ name: 'index', type: 'decimal' })
     index: number;
 
     @Column({ name: 'type', type: 'character varying' })

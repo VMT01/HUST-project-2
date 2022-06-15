@@ -2,11 +2,12 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 import { ETableName } from '@constants/entity.constant';
 
-export class createCrawlStatusTable1650507235156 implements MigrationInterface {
+export class address1655263901216 implements MigrationInterface {
+
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: ETableName.CRAWL_STATUS,
+                name: ETableName.ADDRESSES,
                 columns: [
                     {
                         name: 'id',
@@ -15,22 +16,13 @@ export class createCrawlStatusTable1650507235156 implements MigrationInterface {
                     },
                     {
                         name: 'type',
+                        type: 'integer',
+                    },
+                    {
+                        name: 'address',
                         type: 'character varying',
-                    },
-                    {
-                        name: 'index',
-                        type: 'decimal',
-                    },
-                    {
-                        name: 'created_at',
-                        type: 'timestamp without time zone',
-                        default: 'CURRENT_TIMESTAMP',
-                    },
-                    {
-                        name: 'updated_at',
-                        type: 'timestamp without time zone',
-                        default: 'CURRENT_TIMESTAMP',
-                    },
+                        length: '70',
+                    }
                 ],
             }),
         );
@@ -39,4 +31,5 @@ export class createCrawlStatusTable1650507235156 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable(ETableName.CRAWL_STATUS);
     }
+
 }

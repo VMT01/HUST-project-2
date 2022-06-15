@@ -28,13 +28,14 @@ export class FetchService {
     }
 
     async fillBuffer() {
+        
         while (!this.isStopped) {
             if (this.Buffer.freeSize > 0 && this.lastProcessingHeight < this.latestBlockHeight) {
-                const start = this.lastProcessingHeight + 1;
+                const start = this.lastProcessingHeight + 1;              
                 const end = Math.min(
                     this.Buffer.freeSize + this.lastProcessingHeight,
-                    this.latestBlockHeight - this.lastProcessingHeight,
-                );
+                    this.latestBlockHeight - this.lastProcessingHeight + start -1,
+                    );
                 const blocksBuffer = lodash.range(start, end + 1, 1);
                 this.Buffer.putAll(blocksBuffer);
                 // update lastProcessingHeight.
@@ -73,6 +74,8 @@ export class FetchService {
         this.startBlock = startBlock;
         this.latestBlockHeight = await this.api.getLatestBlockHeight();
         this.lastProcessingHeight = this.startBlock - 1;
+        
+        
     }
 
     async syncLatestProcessedBlock(height: number): Promise<void> {
