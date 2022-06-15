@@ -34,7 +34,7 @@ export class FetchService {
                 const start = this.lastProcessingHeight + 1;              
                 const end = Math.min(
                     this.Buffer.freeSize + this.lastProcessingHeight,
-                    this.latestBlockHeight - this.lastProcessingHeight + start,
+                    this.latestBlockHeight - this.lastProcessingHeight + start -1,
                     );
                 const blocksBuffer = lodash.range(start, end + 1, 1);
                 this.Buffer.putAll(blocksBuffer);

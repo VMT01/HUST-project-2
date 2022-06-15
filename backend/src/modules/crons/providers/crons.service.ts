@@ -13,21 +13,38 @@ export class AddressConsumer {
   ) { }
   @Process()
   async checkAddress(job: Job<unknown>) {
+    console.log(job.id);
+    
+    try {
+      
     const address = job.data as string;
+    
+    
+    if(!address) return;
     const isExist = await this.addressRepo.getOne({ address })
-    if (isExist.id) {
-      console.log("Address exist: ", isExist.id);
+    
+    if (isExist) {
+      
+     // console.log("Address exist: ", isExist.id);
       return;
     }
-    let newAddress: AddressEntity;
-
+    
+    let newAddress={
+      address:null,
+      type:1
+    };
+    
     newAddress.address = address;
+    
     const isSC = await this.web3Service.isSmartContract(address)
     newAddress.type = isSC ? EAddressType.CONTRACT : EAddressType.WALLET;
-
-    const response = await this.addressRepo.createOne(newAddress);
-    console.log("created new address: ", response.id);
+    
+   await this.addressRepo.createOne(newAddress);
     return;
+    } catch (error) {
+      console.log(error.message);
+    return;      
+    }
 
   }
 

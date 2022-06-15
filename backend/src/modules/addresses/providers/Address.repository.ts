@@ -36,8 +36,8 @@ export class AddressRepository extends BaseRepository<AddressEntity> {
         return await qb.getOne();
     }
     // mutate
-    async createOne(newAddress:AddressEntity){
+    async createOne(newAddress:Object){
 
-       return await this.create(newAddress);
+       return await this.insert(newAddress);
     }
 }

@@ -50,9 +50,8 @@ export class IndexerManager {
     async indexBlock(block: BlockTransactionObject) {
         await Promise.all([this.blockService.createOne(block), this.transactionService.createMany(block.transactions)]);
         // TODO: add address to cron job to get data such as contract, wallet
-        const jobs=[...block.transactions.map(d => ({ data: d.from })), ...block.transactions.map(d => ({ data: d.to }))]
-      // console.log(jobs,'added jobs');
-       
+        const jobs=[...block.transactions.map((d,index) => ({ data: d.from})), ...block.transactions.map((d,index) => ({ data: d.to}))]
+
         await this.addressQueue.addBulk(jobs)
        
     }
