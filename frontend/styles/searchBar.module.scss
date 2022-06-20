@@ -1,7 +1,7 @@
 .searchbar {
     width: 100%;
-    background: #112641;
-    border: 2px solid #163153;
+    background: var(--background-container);
+    border: 2px solid var(--border);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -10,7 +10,7 @@
     gap: 10px;
 
     .select {
-        background: #ffffff;
+        background: var(--white);
         border-radius: 8px;
         padding: 2px 5px;
         -webkit-appearance: none;
@@ -34,7 +34,7 @@
 
     .search {
         background: rgba(0, 0, 0, 0.0);
-        color: #ffffff;
+        color: var(--white);
         outline: inherit;
         border: none;
         transform: scale(1.5);
