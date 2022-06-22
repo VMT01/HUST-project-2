@@ -1,3 +1,4 @@
+@import './share.css';
 html,
 body {
   padding: 0;
@@ -13,15 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
-:root{
-  --main-bg:#112641;
 
-  --main-text:white;
-}
-
-/* shared class */
-.header-row{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+:root {
+  --white: #ffffff;
+  --background-root: #132A47;
+  --background-container: #112641;
+  --border: #163153;
+  --background-button: rgba(52, 152, 219, 0.1);
+  --primary: #3498DB;
 }
