@@ -13,3 +13,15 @@ a {
 * {
   box-sizing: border-box;
 }
+:root{
+  --main-bg:#112641;
+
+  --main-text:white;
+}
+
+/* shared class */
+.header-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
