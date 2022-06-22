@@ -13,3 +13,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --white: #ffffff;
+  --background-root: #132A47;
+  --background-container: #112641;
+  --border: #163153;
+  --background-button: rgba(52, 152, 219, 0.1);
+  --primary: #3498DB;
+}
