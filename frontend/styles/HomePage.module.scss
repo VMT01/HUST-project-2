@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    background-color: var(--background-root);
+    color:var(--white);
+    justify-content: center;
+}
+
+.main {
+    max-width: 1200px;
+    padding:20px 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    min-height: 500px;
+
+    .blocks,.txns{
+        padding: 0 15px;
+    }
+    .blocks {
+
+    }
+
+    .txns {}
+}

@@ -12,7 +12,7 @@ import { TxnsRequestDto } from './dtos/txn-request.dto';
 export class TxnRepository extends BaseRepository<TransactionEntity> {
     protected alias: ETableName = ETableName.TRANSACTIONS;
     buildQueryBuilder(options: TxnsRequestDto) {
-        const { hash } = options;
+        const { hash,blockNumber } = options;
         const qb = this.createQb();
         qb.select([
             `${this.alias}.id`,
@@ -30,6 +30,7 @@ export class TxnRepository extends BaseRepository<TransactionEntity> {
             `${this.alias}.input`,
         ]);
         if (hash) qb.where(`${this.alias}.hash = :hash`, { hash });
+        if(blockNumber) qb.andWhere(`${this.alias}.blockNumber = :blockNumber`, { blockNumber });
         return qb;
     }
     async getMany(options: TxnsRequestDto) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BlockTransactionObject } from 'web3-eth';
 
-import { BlockRepository } from '@modules/blocks/providers/block.repository';
+import { BlockRepository } from '@modules/blocks/providers/Block.repository';
 
 interface BlockQueryParams {
     page?: number;

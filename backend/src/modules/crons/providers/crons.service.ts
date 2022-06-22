@@ -13,7 +13,7 @@ export class AddressConsumer {
   ) { }
   @Process()
   async checkAddress(job: Job<unknown>) {
-    console.log(job.id);
+  
     
     try {
       

@@ -1,3 +1,5 @@
+@import './share.css';
+
 html,
 body {
   padding: 0;
@@ -11,5 +13,18 @@ a {
 }
 
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --white: #ffffff;
+  --background-root: #132A47;
+  --background-container: #112641;
+  --border: #163153;
+  --background-button: rgba(52, 152, 219, 0.1);
+  --primary: #3498DB;
+  --bg-blur: #1B2F49;
+  --border-root:#163153;
 }
