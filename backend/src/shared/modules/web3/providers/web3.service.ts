@@ -27,7 +27,7 @@ export class Connection {
         return await this.web3.getBlockNumber();
     }
     async isSmartContract(address: string) {
-        const data = await this.web3.getCode(address)
-        return data !== '0x'
+        const data = await this.web3.getCode(address);
+        return data !== '0x';
     }
 }

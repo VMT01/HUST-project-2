@@ -34,7 +34,7 @@ export class BasePaginationWithSortRequestDto extends BasePaginationRequestDto {
     @ApiProperty({ required: false })
     @IsOptional()
     limit?: number;
-    
+
     @ApiProperty({ required: false })
     @IsOptional()
     page?: number;

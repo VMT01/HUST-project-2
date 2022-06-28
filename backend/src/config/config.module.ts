@@ -1,5 +1,5 @@
-import { Global, Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
+import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 
@@ -22,7 +22,7 @@ import { EEnvKey } from '@constants/env.constant';
             }),
         }),
         BullModule.registerQueue({
-            name:"address",
+            name: 'address',
             redis: {
                 host: 'localhost',
                 port: 6379,
@@ -30,6 +30,6 @@ import { EEnvKey } from '@constants/env.constant';
         }),
     ],
     providers: [ConfigService],
-    exports: [ConfigService,BullModule],
+    exports: [ConfigService, BullModule],
 })
-export class ConfigurationModule { }
+export class ConfigurationModule {}

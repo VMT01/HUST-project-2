@@ -4,8 +4,9 @@ import { ETableName } from '@constants/entity.constant';
 
 import { BaseRepository } from '@core/base-repository';
 
-import { AddressesRequestDto } from './dtos/address-request.dto';
 import { AddressEntity } from '@entities/Address.entity';
+
+import { AddressesRequestDto } from './dtos/address-request.dto';
 
 @EntityRepository(AddressEntity)
 export class AddressRepository extends BaseRepository<AddressEntity> {
@@ -13,11 +14,7 @@ export class AddressRepository extends BaseRepository<AddressEntity> {
     buildQueryBuilder(params: AddressesRequestDto) {
         const { id, address, type } = params;
         const qb = this.createQb();
-        qb.select([
-            `${this.alias}.id`,
-            `${this.alias}.address`,
-            `${this.alias}.type`,
-        ]);
+        qb.select([`${this.alias}.id`, `${this.alias}.address`, `${this.alias}.type`]);
         if (id) qb.where(`${this.alias}.id = :id`, { id });
         if (address) qb.where(`${this.alias}.address = :address`, { address });
         if (type) qb.where(`${this.alias}.type = :type`, { type });
@@ -36,8 +33,7 @@ export class AddressRepository extends BaseRepository<AddressEntity> {
         return await qb.getOne();
     }
     // mutate
-    async createOne(newAddress:Object){
-
-       return await this.insert(newAddress);
+    async createOne(newAddress: Record<string, unknown>) {
+        return await this.insert(newAddress);
     }
 }
