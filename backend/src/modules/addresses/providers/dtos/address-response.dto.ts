@@ -6,8 +6,7 @@ export class AddressResponseDto {
 
     @ApiProperty()
     type: number;
-    
+
     @ApiProperty()
     address: string;
-
 }

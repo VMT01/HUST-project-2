@@ -30,7 +30,7 @@ export class createTransactionTable1650881300826 implements MigrationInterface {
                     {
                         name: 'block_number',
                         type: 'decimal',
-                
+
                         isNullable: true,
                     },
                     {

@@ -3,7 +3,6 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 import { ETableName } from '@constants/entity.constant';
 
 export class address1655263901216 implements MigrationInterface {
-
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
@@ -22,7 +21,7 @@ export class address1655263901216 implements MigrationInterface {
                         name: 'address',
                         type: 'character varying',
                         length: '70',
-                    }
+                    },
                 ],
             }),
         );
@@ -31,5 +30,4 @@ export class address1655263901216 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable(ETableName.CRAWL_STATUS);
     }
-
 }

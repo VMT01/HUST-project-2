@@ -7,7 +7,7 @@ import { AddressesRequestDto } from './dtos/address-request.dto';
 
 @Injectable()
 export class AddressService {
-    constructor(private readonly addressRepo: AddressRepository) { }
+    constructor(private readonly addressRepo: AddressRepository) {}
 
     async getAddresses(options: AddressesRequestDto) {
         const data = await this.addressRepo.getMany(options);
