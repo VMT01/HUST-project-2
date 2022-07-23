@@ -3,21 +3,19 @@ import { useMemo } from "react";
 import { ArrowLeftRounded, ArrowRightRounded } from "@mui/icons-material";
 import style from "../../styles/blockDetail.module.scss";
 
-function handleValue(value, index) {
-  if (index === 1) {
-    const momentVal = moment.unix(value);
-    return `${momentVal.fromNow()} (${momentVal.format(
-      "MMM-DD-YYYY hh:mm:ss A Z"
-    )})`;
-  }
-  return value;
+function handleValue(value) {
+  if (!value) return "";
+  const momentVal = moment.unix(value);
+  return `${momentVal.fromNow()} (${momentVal.format(
+    "MMM-DD-YYYY hh:mm:ss A Z"
+  )})`;
 }
 
 export default function BlockInfo({ data }) {
   const info = useMemo(
     () => [
       { name: "Block Height:", value: data.number },
-      { name: "Timestamp:", value: data.timestamp },
+      { name: "Timestamp:", value: handleValue(data.timestamp) },
       { name: "Mined By:", value: data.miner },
       { name: "Difficulty:", value: data.difficulty },
       { name: "Total Difficulty:", value: data.totalDifficulty },
@@ -37,8 +35,8 @@ export default function BlockInfo({ data }) {
       {info.map((item, index) => (
         <p key={index}>
           <span>{item.name}</span>
-          <span className={index === 2 || index === 7 ? style.link : ""}>
-            {handleValue(item.value, index)}
+          <span className={index === 2 || index === 7 && style.link}>
+            {item.value}
             {index === 0 && (
               <>
                 <ArrowLeftRounded className={style.button} />

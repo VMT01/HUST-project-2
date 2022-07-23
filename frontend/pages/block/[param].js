@@ -1,4 +1,3 @@
-import Web3 from "web3";
 import BlockHeader from "../../components/block/BlockHeader";
 import BlockInfo from "../../components/block/BlockInfo";
 import BlockTxn from "../../components/block/BlockTxn";
