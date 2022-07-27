@@ -28,3 +28,15 @@ a {
   --bg-blur: #1B2F49;
   --border-root:#163153;
 }
+.latest-address{
+  background-color: var(--background-root);
+  color:white;
+  text-align: center;
+  padding-bottom: 30px;
+}
+.bg-root{
+  background-color: var(--background-root);
+  color:white;
+  text-align: center;
+  padding: 15px;
+}

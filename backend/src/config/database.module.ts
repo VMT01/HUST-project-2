@@ -26,10 +26,10 @@ import { EEnvKey } from '@constants/env.constant';
                     database: database || connectionOptions.database,
                     entities: connectionOptions.entities,
                     migrations: connectionOptions.migrations,
-                    logging: false,
-                    // process.env.NODE_ENV && process.env.NODE_ENV === 'development'
-                    //     ? connectionOptions.logging
-                    //     : undefined,
+                    logging: 
+                    process.env.NODE_ENV && process.env.NODE_ENV === 'development'
+                        ? connectionOptions.logging
+                        : undefined,
                 });
             },
         }),

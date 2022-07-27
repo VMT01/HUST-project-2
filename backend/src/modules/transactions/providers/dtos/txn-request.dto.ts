@@ -4,4 +4,5 @@ export class TxnsRequestDto extends BasePaginationWithSortRequestDto {
     hash?: string;
     id?: string;
     blockNumber?: string;
+    address?:string;
 }
