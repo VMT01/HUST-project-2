@@ -1,24 +1,28 @@
 import styles from '../styles/TransactionTable.module.scss'
 import Web3 from "web3"
-export default function TransactionTable({ txns = [] }) {
+import Link from 'next/link';
+export default function TransactionTable({ txns = [],type="normal" }) {
+
   return <div className={styles.container}>
     <div className='header-row'>
       <p>Latest Transaction</p>
-      <button>View All Transaction</button>
+      {type==='normal' && <button>View All Transaction</button>}
     </div>
     <div>
-      {txns.map((txn, i) => <TxnItem key={i} txn={txn} />)}
+      {txns.map((txn, i) => <TxnItem txn={txn} type={type}/>)}
     </div>
   </div>;
 }
 
-const TxnItem = ({ txn }) => {
+const TxnItem = ({ txn ,type}) => {
 
   return <div className={styles.block}>
     <div className={styles.TxnTitle}>
       <p className={styles.rounded}>Tx</p>
       <div className={styles.TxnTitleDetail}>
+      <Link href={`/txn/${txn.hash}`}>
       <p>{txn.hash.substr(0,5)}...</p>
+      </Link>
       <p>x min ago</p>
     </div>
     </div>

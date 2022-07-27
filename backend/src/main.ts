@@ -18,8 +18,8 @@ async function bootstrap() {
 
     /* Indexer */
     /* Currently stop crawl - Uncomment this later to continue crawling */
-    const indexer = app.get(IndexerManager);
-    indexer.start();
+    // const indexer = app.get(IndexerManager);
+    // indexer.start();
 
     /* Swagger */
     if (configService.get<string>(EEnvKey.SWAGGER_PATH)) {

@@ -1,4 +1,5 @@
 import styles from '../styles/BlockTable.module.scss'
+import Link from 'next/link'
 export default function BlockTable({ blocks = [] }) {
   return <div className={styles.container}>
     <div className='header-row'>
@@ -11,13 +12,15 @@ export default function BlockTable({ blocks = [] }) {
   </div>;
 }
 
-const BlockItem = ({ block={number,miner} }) => {
+const BlockItem = ({ block }) => {
 
   return <div className={styles.block}>
     <div className={styles.blockTitle}>
       <p className={styles.rounded}>Bk</p>
       <div className={styles.blockTitleDetail}>
-        <p>{block.number}</p>
+       <Link href={`/block/${block.number}`}> 
+       <p>{block.number}</p>
+       </Link>
         <p>x min ago</p>
       </div>
 

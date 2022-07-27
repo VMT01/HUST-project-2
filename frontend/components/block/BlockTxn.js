@@ -3,6 +3,7 @@ import style from "../../styles/blockDetail.module.scss";
 import Web3 from "web3";
 
 export default function BlockTxn({ data }) {
+  console.log(data);
   const info = useMemo(
     () => {
       const res = data.data.map((txn) => ({
@@ -24,7 +25,7 @@ export default function BlockTxn({ data }) {
       ];
     },
     //eslint-disable-next-line
-    []
+    [data]
   );
   return (
     <div className={style["block-txn"]}>
